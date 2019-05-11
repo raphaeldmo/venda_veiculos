@@ -4,8 +4,6 @@ package DAO;
  *
  * @author Raphael Orlandi
  */
-import Models.CategoriaCNH;
-import Models.CategoriaCliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,8 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Models.Cliente;
 import Models.ListaCliente;
-import Models.Sexo;
-import Models.StatusClienteUsuario;
+
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,104 +47,53 @@ public class ClienteDAO {
         //String data = dfUsa.format();
         //Date parsed = (Date) dfUsa.parse(data);
 
-        if (c.getIdCategoriaCliente() == 2) {
-            try {
-                PreparedStatement Create = connection.prepareStatement(
-                        "INSERT INTO cliente (nome, "
-                        + " cpf_cnpj,"
-                        + " cnh,"
-                        + " id_categoria_cnh,"
-                        + " email,"
-                        + " validade_cnh,"
-                        + " endereco,"
-                        + " cep,"
-                        + " bairro,"
-                        + " complemento,"
-                        + " cidade,"
-                        + " estado,"
-                        + " celular,"
-                        + " id_categoria_cliente)"
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        try {
+            PreparedStatement Create = connection.prepareStatement(
+                    "INSERT INTO cliente ("
+                    + "nome,"
+                    + "	cpf_cnpj,"
+                    + "	id_sexo,"
+                    + "	 id_categoria_cliente ,"
+                    + "	 cnh ,"
+                    + "	 id_categoria_cnh ,"
+                    + "	 rg ,"
+                    + "	 email ,"
+                    + "	 nacionalidade ,"
+                    + "	 data_nascimento ,"
+                    + "	 validade_cnh ,"
+                    + "	 cep ,"
+                    + "	 endereco ,"
+                    + "	 numero ,"
+                    + "	 bairro ,"
+                    + "	 complemento ,"
+                    + "	 cidade ,"
+                    + "	 estado ,"
+                    + "	 celular)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                Create.setString(1, c.getNome());
-                Create.setString(2, c.getCpfCnpj());
-                Create.setString(3, c.getCnh());
-                Create.setInt(4, c.getIdcategoriacnh());
-                Create.setString(5, c.getEmail());
-                Create.setString(6, c.getDataNascimento());
-                Create.setString(7, c.getEndereco());
-                Create.setString(8, c.getCep());
-                Create.setString(9, c.getBairro());
-                Create.setString(10, c.getComplemento());
-                Create.setString(11, c.getCidade());
-                Create.setString(12, c.getEstado());
-                Create.setString(13, c.getCelular());
-                Create.setInt(14, c.getIdCategoriaCliente());
+            Create.setString(1, c.getNome());
+            Create.setInt(3, c.getIdsexo());
+            Create.setString(7, c.getRg());
+            Create.setString(8, c.getEmail());
+            Create.setString(9, c.getNacionalidade());
+            Create.setString(10, c.getDataNascimento());
+            Create.setString(12, c.getCep());
+            Create.setString(13, c.getEndereco());
+            Create.setInt(14, c.getNumero());
+            Create.setString(15, c.getBairro());
+            Create.setString(16, c.getComplemento());
+            Create.setString(17, c.getCidade());
+            Create.setString(18, c.getEstado());
+            Create.setString(19, c.getCelular());
 
-                int linhasAfetadas = Create.executeUpdate();
+            int linhasAfetadas = Create.executeUpdate();
 
-                if (linhasAfetadas > 0) {
-                    retorno = true;
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            if (linhasAfetadas > 0) {
+                retorno = true;
             }
-        } else {
-            try {
-                PreparedStatement Create = connection.prepareStatement(
-                        "INSERT INTO cliente ("
-                        + "nome,"
-                        + "	cpf_cnpj,"
-                        + "	id_sexo,"
-                        + "	 id_categoria_cliente ,"
-                        + "	 cnh ,"
-                        + "	 id_categoria_cnh ,"
-                        + "	 rg ,"
-                        + "	 email ,"
-                        + "	 nacionalidade ,"
-                        + "	 data_nascimento ,"
-                        + "	 validade_cnh ,"
-                        + "	 cep ,"
-                        + "	 endereco ,"
-                        + "	 numero ,"
-                        + "	 bairro ,"
-                        + "	 complemento ,"
-                        + "	 cidade ,"
-                        + "	 estado ,"
-                        + "	 celular)"
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-                Create.setString(1, c.getNome());
-                Create.setString(2, c.getCpfCnpj());
-                Create.setInt(3, c.getIdsexo());
-                Create.setInt(4, c.getIdCategoriaCliente());
-                Create.setString(5, c.getCnh());
-                Create.setInt(6, c.getIdcategoriacnh());
-                Create.setString(7, c.getRg());
-                Create.setString(8, c.getEmail());
-                Create.setString(9, c.getNacionalidade());
-                Create.setString(10, c.getDataNascimento());
-                Create.setString(11, c.getValidadeCnh());
-                Create.setString(12, c.getCep());
-                Create.setString(13, c.getEndereco());
-                Create.setInt(14, c.getNumero());
-                Create.setString(15, c.getBairro());
-                Create.setString(16, c.getComplemento());
-                Create.setString(17, c.getCidade());
-                Create.setString(18, c.getEstado());
-                Create.setString(19, c.getCelular());
-
-                int linhasAfetadas = Create.executeUpdate();
-
-                if (linhasAfetadas > 0) {
-                    retorno = true;
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return retorno;
     }
 
     //implementar metodo inativar - recebe ID e realizar UPDATE no registro
@@ -204,10 +150,7 @@ public class ClienteDAO {
                     + "WHERE ID = ");
 
             Update.setString(1, c.getNome());
-            Update.setString(2, c.getCpfCnpj());
             Update.setInt(3, c.getIdsexo());
-            Update.setString(4, c.getCnh());
-            Update.setInt(5, c.getIdcategoriacnh());
             Update.setString(6, c.getRg());
             Update.setString(7, c.getEmail());
             Update.setString(8, c.getNacionalidade());
@@ -219,8 +162,6 @@ public class ClienteDAO {
             Update.setString(14, c.getCidade());
             Update.setString(15, c.getEstado());
             Update.setString(16, c.getCelular());
-            Update.setInt(17, c.getStatus());
-            Update.setInt(18, c.getIdCategoriaCliente());
             Update.setInt(19, c.getId());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,100 +171,29 @@ public class ClienteDAO {
         return retorno;
     }
 
-    public static ArrayList<CategoriaCNH> getCategoriaCNH() {
-        ArrayList<CategoriaCNH> listaCategoriaCNH = new ArrayList<CategoriaCNH>();
-
-        String query = "SELECT * FROM categoria_cnh;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                CategoriaCNH categoriaCnh = new CategoriaCNH();
-                categoriaCnh.setId(rs.getInt("id"));
-                categoriaCnh.setCategoria(rs.getString("Categoria"));
-                listaCategoriaCNH.add(categoriaCnh);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaCategoriaCNH;
-    }
-
-    public static ArrayList<StatusClienteUsuario> getStatusClienteUsuarios() {
-        ArrayList<StatusClienteUsuario> listaStatus = new ArrayList<StatusClienteUsuario>();
-
-        String query = "SELECT * FROM STATUS_CLIENTE_USUARIO;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                StatusClienteUsuario status = new StatusClienteUsuario();
-                status.setId(rs.getInt("id"));
-                status.setStatus(rs.getString("status"));
-                listaStatus.add(status);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaStatus;
-    }
-
-    public static ArrayList<Sexo> getSexo() {
-        ArrayList<Sexo> listaSexo = new ArrayList<Sexo>();
-
-        String query = "SELECT * FROM sexo;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Sexo sexo = new Sexo();
-                sexo.setId(rs.getInt("id"));
-                sexo.setSexo(rs.getString("sexo"));
-                listaSexo.add(sexo);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaSexo;
-    }
-
-    public static ArrayList<CategoriaCliente> getCategoriaCliente() {
-        ArrayList<CategoriaCliente> ListaCategoriaCliente = new ArrayList<CategoriaCliente>();
-
-        String query = "SELECT * FROM CATEGORIA_CLIENTE;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                CategoriaCliente categoria_cliente = new CategoriaCliente();
-                categoria_cliente.setId(rs.getInt("id"));
-                categoria_cliente.setCategoria(rs.getString("Categoria"));
-                ListaCategoriaCliente.add(categoria_cliente);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return ListaCategoriaCliente;
-    }
-
+//    public static ArrayList<CategoriaCliente> getCategoriaCliente() {
+//        ArrayList<CategoriaCliente> ListaCategoriaCliente = new ArrayList<CategoriaCliente>();
+//
+//        String query = "SELECT * FROM CATEGORIA_CLIENTE;";
+//
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(query);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                CategoriaCliente categoria_cliente = new CategoriaCliente();
+//                categoria_cliente.setId(rs.getInt("id"));
+//                categoria_cliente.setCategoria(rs.getString("Categoria"));
+//                ListaCategoriaCliente.add(categoria_cliente);
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        return ListaCategoriaCliente;
+//    }
     public static ArrayList<ListaCliente> getCliente(int id) {
         ArrayList<ListaCliente> listaClientes = new ArrayList<ListaCliente>();
 
@@ -363,48 +233,48 @@ public class ClienteDAO {
 
         return listaClientes;
     }
-
-    public static ArrayList<Cliente> getClienteCpf(String cpf) {
-        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
-        int numeroLinhas = 0;
-        
-        String verificaLocacao = "SELECT * FROM cliente inner join locacoes on cliente.id = locacoes.id_cliente where cliente.cpf_cnpj = '" + cpf + "' AND locacoes.id_status_locacao = 1;";
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(verificaLocacao);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                numeroLinhas = rs.getInt(1);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        if(numeroLinhas > 0 ) {
-            return listaCliente;
-        } 
-
-        String query = "SELECT * FROM cliente where cpf_cnpj = '" + cpf + "';";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setIdCategoriaCliente(rs.getInt("id_categoria_cliente"));
-                cliente.setNome(rs.getString("nome"));
-                cliente.setCnh(rs.getString("cnh"));
-                cliente.setValidadeCnh(rs.getString("validade_cnh"));
-                listaCliente.add(cliente);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        return listaCliente;
-    }
+//
+//    public static ArrayList<Cliente> getClienteCpf(String cpf) {
+//        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+//        int numeroLinhas = 0;
+//        
+//        String verificaLocacao = "SELECT * FROM cliente inner join locacoes on cliente.id = locacoes.id_cliente where cliente.cpf_cnpj = '" + cpf + "' AND locacoes.id_status_locacao = 1;";
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(verificaLocacao);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                numeroLinhas = rs.getInt(1);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        if(numeroLinhas > 0 ) {
+//            return listaCliente;
+//        } 
+//
+//        String query = "SELECT * FROM cliente where cpf_cnpj = '" + cpf + "';";
+//
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(query);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                Cliente cliente = new Cliente();
+//                cliente.setId(rs.getInt("id"));
+//                cliente.setIdCategoriaCliente(rs.getInt("id_categoria_cliente"));
+//                cliente.setNome(rs.getString("nome"));
+//                cliente.setCnh(rs.getString("cnh"));
+//                cliente.setValidadeCnh(rs.getString("validade_cnh"));
+//                listaCliente.add(cliente);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        return listaCliente;
+//    }
 
 }

@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class ListaCliente {
     
+    
     private int id;
     private String nome;
     private String categoria;

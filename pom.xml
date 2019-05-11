@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.senac.tads.pi3</groupId>
-    <artifactId>aluguel-automoveis</artifactId>
+    <artifactId>venda-automoveis</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <organization>
         <name>TADES Locadora de Automóveis LTDA</name>
     </organization>
-    <name>aluguel-automoveis</name>
+    <name>venda-automoveis</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

@@ -9,10 +9,7 @@ package DAO;
  *
  * @author vsilva
  */
-import Models.CambioVeiculo;
-import Models.CombustivelVeiculo;
-import Models.ListaVeiculos;
-import Models.StatusVeiculo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -180,74 +177,74 @@ public class VeiculoDAO {
 
     }
 
-    public static ArrayList<StatusVeiculo> getStatus() {
-        ArrayList<StatusVeiculo> listaStatus = new ArrayList<StatusVeiculo>();
+//    public static ArrayList<StatusVeiculo> getStatus() {
+//        ArrayList<StatusVeiculo> listaStatus = new ArrayList<StatusVeiculo>();
+//
+//        String query = "SELECT * FROM status_veiculo;";
+//
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(query);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                StatusVeiculo status = new StatusVeiculo();
+//                status.setId(rs.getInt("id"));
+//                status.setStatus(rs.getString("status"));
+//                listaStatus.add(status);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        return listaStatus;
+//    }
 
-        String query = "SELECT * FROM status_veiculo;";
+//    public static ArrayList<CombustivelVeiculo> getCombustivel() {
+//        ArrayList<CombustivelVeiculo> listaCombustivel = new ArrayList<CombustivelVeiculo>();
+//
+//        String query = "SELECT * FROM combustivel;";
+//
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(query);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                CombustivelVeiculo combustivel = new CombustivelVeiculo();
+//                combustivel.setId(rs.getInt("id"));
+//                combustivel.setCombustivel(rs.getString("combustivel"));
+//                listaCombustivel.add(combustivel);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        return listaCombustivel;
+//    }
 
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                StatusVeiculo status = new StatusVeiculo();
-                status.setId(rs.getInt("id"));
-                status.setStatus(rs.getString("status"));
-                listaStatus.add(status);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaStatus;
-    }
-
-    public static ArrayList<CombustivelVeiculo> getCombustivel() {
-        ArrayList<CombustivelVeiculo> listaCombustivel = new ArrayList<CombustivelVeiculo>();
-
-        String query = "SELECT * FROM combustivel;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                CombustivelVeiculo combustivel = new CombustivelVeiculo();
-                combustivel.setId(rs.getInt("id"));
-                combustivel.setCombustivel(rs.getString("combustivel"));
-                listaCombustivel.add(combustivel);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaCombustivel;
-    }
-
-    public static ArrayList<CambioVeiculo> getCambio() {
-        ArrayList<CambioVeiculo> listaCambio = new ArrayList<CambioVeiculo>();
-
-        String query = "SELECT * FROM cambio;";
-
-        try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                CambioVeiculo cambio = new CambioVeiculo();
-                cambio.setId(rs.getInt("id"));
-                cambio.setCambio(rs.getString("cambio"));
-                listaCambio.add(cambio);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return listaCambio;
-    }
+//    public static ArrayList<CambioVeiculo> getCambio() {
+//        ArrayList<CambioVeiculo> listaCambio = new ArrayList<CambioVeiculo>();
+//
+//        String query = "SELECT * FROM cambio;";
+//
+//        try (Connection conn = obterConexao();
+//                PreparedStatement stmt = conn.prepareStatement(query);
+//                ResultSet rs = stmt.executeQuery()) {
+//            while (rs.next()) {
+//                CambioVeiculo cambio = new CambioVeiculo();
+//                cambio.setId(rs.getInt("id"));
+//                cambio.setCambio(rs.getString("cambio"));
+//                listaCambio.add(cambio);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        return listaCambio;
+//    }
 
     public static ArrayList<ListaVeiculos> getVeiculos(int id) {
         ArrayList<ListaVeiculos> listaVeiculos = new ArrayList<ListaVeiculos>();
