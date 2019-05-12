@@ -94,6 +94,7 @@ public class ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return retorno;
     }
 
     //implementar metodo inativar - recebe ID e realizar UPDATE no registro
